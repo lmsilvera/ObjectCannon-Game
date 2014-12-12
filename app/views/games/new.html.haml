@@ -1,0 +1,8 @@
+%h1
+  New Game
+= form_for @game do |f|
+  = f.label :first_player_id
+  = f.text_field :first_player_id, required: true
+  = f.label :second_player_id
+  = f.text_field :second_player_id, required: true
+  = f.submit

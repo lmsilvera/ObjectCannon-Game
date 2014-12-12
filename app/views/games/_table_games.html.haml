@@ -1,0 +1,14 @@
+%table{ border: 1 }
+  %thead
+    %tr
+      %td
+        Player 1 Name
+      %td
+        Player 2 Name
+      %td
+        Winner Wall Health Remaining
+      %td
+        Winner
+  %tbody
+    - @games.each do |game|
+      = render 'item_game', game: game

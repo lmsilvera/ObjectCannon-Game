@@ -1,0 +1,5 @@
+$(".player-rival-<%= @object.player.id %> .wall").html( $(".player-rival-<%= @object.player.id %> .wall").html() - <%= @object.total_attributes %>);
+$(".player-<%= @object.player.id %> .totalobjects").html( parseInt($(".player-<%= @object.player.id %> .totalobjects").html()) + <%= @object.total_attributes %>);
+total = parseInt( $(".player-<%= @object.player.id %> .totalobjects").html());
+if(total>100){window.location = "<%= end_game_path(@object.game.id) %>";};
+console.log("Atacó <%= @object.player.name %>");

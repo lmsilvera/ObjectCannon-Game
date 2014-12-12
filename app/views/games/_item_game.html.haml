@@ -1,0 +1,8 @@
+%tr
+  - game.players_name.each do |player_name|
+    %td
+      = player_name
+  %td
+    = game.winner_wall_health_remaining.to_i
+  %td
+    = game.winner

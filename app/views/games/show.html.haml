@@ -1,0 +1,40 @@
+%h1
+  = @game.players_name.join(" vs ")
+
+.box{ class: "player-rival-#{@game.second_player.id} player-#{@game.first_player.id}" }
+  .player-name
+    Player 1:
+    = @game.players_name[0]
+  Wall:
+  .wall
+    = 100 - (@game.object_cannon_games.where(player_id: @game.second_player.id).map{ |object| object.total_attributes.to_i}.uniq.reduce(:+) || 0)
+  = link_to "Atack", new_object_path(game_id: @game.id, player_id: @game.first_player.id), remote: true, method: :post
+  .objects
+    Your objects attacks:
+  .totalobjects
+    = @game.object_cannon_games.where(player_id: @game.first_player.id).map(&:total_attributes).reduce(:+) || 0
+
+.box{ class: "player-rival-#{@game.first_player.id} player-#{@game.second_player.id}" }
+  .player-name
+    Player 2:
+    = @game.players_name[1]
+  Wall:
+  .wall
+    = 100 - (@game.object_cannon_games.where(player_id: @game.first_player.id).map{ |object| object.total_attributes.to_i}.uniq.reduce(:+) || 0)
+  = link_to "Atack", new_object_path(game_id: @game.id, player_id: @game.second_player.id), remote: true, method: :post
+  .objects
+    Your objects attacks:
+  .totalobjects
+    = @game.object_cannon_games.where(player_id: @game.second_player.id).map(&:total_attributes).reduce(:+) || 0
+:javascript
+  $(document).ready( function() {
+    $('.box.player-#{@game.second_player.id} a').click(function(){
+      $('.box.player-#{@game.first_player.id} a').show();
+      $(this).hide();
+    });
+    $('.box.player-#{@game.first_player.id} a').click(function(){
+      $('.box.player-#{@game.second_player.id} a').show();
+      $(this).hide();
+    });
+    $('.box.player-#{@game.second_player.id} a').hide();
+  } );
