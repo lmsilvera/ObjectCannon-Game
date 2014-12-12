@@ -11,9 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20141212160842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "games", force: true do |t|
+    t.integer  "first_player_id"
+    t.integer  "second_player_id"
+    t.integer  "winner_wall_health_remaining"
+    t.string   "winner"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "object_cannon_games", force: true do |t|
+    t.integer  "total_attributes"
+    t.integer  "player_id"
+    t.integer  "game_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "players", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
