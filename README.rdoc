@@ -1,0 +1,4 @@
+== README
+
+The object cannon is a small two player game which consists on destroying the other player wall with objects. These
+objects should be randomly generated and have 5 attributes max. Objects attributes can be random.
